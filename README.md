@@ -18,4 +18,10 @@ The two servers and one client in this demonstration two servers run [ubuntu 20.
 #### 1. Set Up Server 1 (OpenVPN + Stunnel)
 ```bash script
 git clone https://github.com/ysoheilifar/VPNChain-OVPN-Stunnel-OpenConnect.git
+chmod +x Server-1.sh
+bash Server-1.sh
+```
+Check also that OpenVPN is listening for TCP input on port 1194 and Stunnel is listening for TCP input on port 8080
+```bash script
+ss -tulpn | grep -e 1194 -e 8080
 ```
