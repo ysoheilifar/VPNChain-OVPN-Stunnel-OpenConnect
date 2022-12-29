@@ -16,6 +16,7 @@ The two servers and one client in this demonstration two servers run [ubuntu 20.
 
 ### Let's Start
 #### 1. Set Up Server 1 (OpenVPN + Stunnel)
+download and run script for Server-1
 ```bash script
 git clone https://github.com/ysoheilifar/VPNChain-OVPN-Stunnel-OpenConnect.git
 cd VPNChain-OVPN-Stunnel-OpenConnect
