@@ -16,3 +16,6 @@ The two servers and one client in this demonstration two servers run [ubuntu 20.
 
 ### Let's Start
 #### 1. Set Up Server 1
+```bash script
+git clone https://github.com/ysoheilifar/VPNChain-OVPN-Stunnel-OpenConnect.git
+```
