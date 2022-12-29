@@ -12,10 +12,10 @@ A VPN chain disguises your destination from your ISP and VPN1, and disguises you
 ### OpenVPN + Stunnel + Openconnect
 People in not-free countries often have a problem with OpenVPN connections being blocked by government censors. This article describes one possible solution. OpenVPN is tunneled through Stunnel, thus resembling a TLS connection on port 443. Whether or not this gets through Deep Packet Inspection (DPI) depends on the sophistication of the DPI. It may work in some countries but not in others. We include server name indicator (SNI) in the TLS to make the connection look a bit more like a real HTTPS connection.
 
-The two servers and one client in this demonstration two servers run [ubuntu 20.04 LTS](https://releases.ubuntu.com/focal/) and client run windows. We will give the IP addresses of the two servers as 11.11.11.11 and 22.22.22.22 respectively. We also refer to them as SRV1 and SRV2.
+The two servers and one client in this demonstration two servers run [ubuntu 20.04 LTS](https://releases.ubuntu.com/focal/) and client run windows. We will give the IP addresses of the two servers as 11.11.11.11 and 22.22.22.22 respectively. We also refer to them as Server1 and Server2.
 
 ### Let's Start
-#### 1. Set Up Server 1
+#### 1. Set Up Server 1 (OpenVPN + Stunnel)
 ```bash script
 git clone https://github.com/ysoheilifar/VPNChain-OVPN-Stunnel-OpenConnect.git
 ```
