@@ -1,4 +1,4 @@
-# VPNChain OVPN, Stunnel and OpenConnect
+# VPNChain OpenVPN, Stunnel and OpenConnect
 
 ### VPN Chain
 The earliest mention I can find of VPN chains is a [2010 article](https://secure-computing.net/wiki/index.php/OpenVPN/VpnChains) by Eric Crist. That article envisaged a literal chain, in which one client connects to a server, which in turn connects to a further server, and on. It did not give any practical details.
