@@ -29,7 +29,7 @@ net.core.default_qdisc=fq
 net.ipv4.tcp_congestion_control=bbr
 EOF
 OVPN=`apt list --installed | grep -i openvpn`
-if [[ -z $OVPN ]]; then
+if [[ $OVPN != *"openvpn"* ]]; then
 wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
 chmod +x openvpn-install.sh
 printf '\nn\n1\n2\n9\nn\nn\n\nirfree\n1\n' | ./openvpn-install.sh
