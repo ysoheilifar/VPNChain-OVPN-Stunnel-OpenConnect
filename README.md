@@ -35,3 +35,7 @@ cd VPNChain-OVPN-Stunnel-OpenConnect
 chmod +x Server-2.sh
 bash Server-2.sh
 ```
+Check also that Openconnect is listening for TCP input on port 443 and Stunnel is listening for TCP input on port 1194
+```bash script
+ss -tulpn | grep -e 1194 -e 443
+```
