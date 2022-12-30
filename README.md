@@ -27,4 +27,11 @@ Check also that OpenVPN is listening for TCP input on port 1194 and Stunnel is l
 ```bash script
 ss -tulpn | grep -e 1194 -e 8080
 ```
-copy location of `irfree.ovpn` file created by openvpn on Server-1 in this demonstration on `/root/VPNChain-OVPN-Stunnel-OpenConnect/irfree.ovpn`
+#### 2. Set Up Server 2 (OpenVPN + Stunnel + Openconnect)
+download and run script for Server-2
+```bash script
+git clone https://github.com/ysoheilifar/VPNChain-OVPN-Stunnel-OpenConnect.git
+cd VPNChain-OVPN-Stunnel-OpenConnect
+chmod +x Server-2.sh
+bash Server-2.sh
+```
