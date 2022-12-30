@@ -58,6 +58,7 @@ connect = 127.0.0.1:1194
 EOF
 echo 'ENABLED=1' >> /etc/default/stunnel4
 stunnel
+cp -rf./irfree.ovpn /root/irfree.ovpn
 echo -e '\n'
 read -p "Do you want to reboot? [y/n]: " yn
 case $yn in
