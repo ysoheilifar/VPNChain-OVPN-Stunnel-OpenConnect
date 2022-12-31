@@ -39,3 +39,8 @@ Check also that Openconnect is listening for TCP input on port 443 and Stunnel i
 ```bash script
 ss -tulpn | grep -e 1194 -e 443
 ```
+for create and management user on Openconnect use command below
+```bash script
+ocpasswd -c /etc/ocserv/ocpasswd -g default <username>
+vi /etc/ocserv/ocpasswd 
+```
