@@ -52,6 +52,8 @@ if [[ ! -f /root/irfree.ovpn ]]; then
     exit 0
 fi
 openvpn --config /root/irfree.ovpn --daemon
+echo -e "\n${yellow} wait 30 second... ${nc}\n"
+sleep 30
 ip route add default via 10.8.0.2 dev tun0 table 120
 ip rule add from 192.168.1.0/21 table 120
 apt install -y ocserv
