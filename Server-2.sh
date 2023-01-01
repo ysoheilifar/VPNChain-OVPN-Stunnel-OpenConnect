@@ -23,7 +23,7 @@ else
 fi
 apt update -y && apt upgrade -y
 echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
-iptables=`iptables -nvL | grep -e 192.168.0.0 -e 10.8.0.2`
+iptables=`iptables -t nat -L | grep -e 192.168.0.0 -e 10.8.0.2`
 if [[ -z $iptables ]]; then
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
     iptables -t nat -A POSTROUTING -s 192.168.0.0/21 -j SNAT --to-source 10.8.0.2
