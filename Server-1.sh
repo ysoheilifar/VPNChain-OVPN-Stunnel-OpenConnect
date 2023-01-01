@@ -39,7 +39,6 @@ fi
 sed -i '/1194/d' /etc/iptables/add-openvpn-rules.sh
 sed -i '/1194/d' /etc/iptables/rm-openvpn-rules.sh
 sed -i 's/push "redirect-gateway def1 bypass-dhcp"/#push "redirect-gateway def1 bypass-dhcp"/' /etc/openvpn/server.conf
-sed -i 's/^remote.*1194/remote 127.0.0.1 1194/' ./irfree.ovpn
 apt install stunnel4 -y
 cd /etc/stunnel
 openssl genrsa -out key.pem 2048
@@ -58,6 +57,7 @@ EOF
 echo 'ENABLED=1' >> /etc/default/stunnel4
 stunnel
 cp -rf ./irfree.ovpn /root/irfree.ovpn
+sed -i 's/^remote.*1194/remote 127.0.0.1 1194/' /root/irfree.ovpn
 echo -e '\n'
 read -p "Do you want to reboot? [y/n]: " yn
 case $yn in
