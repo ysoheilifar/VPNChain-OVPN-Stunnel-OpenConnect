@@ -10,7 +10,6 @@ else
     echo -e "\n${red} Ubuntu version is$OS and not support ${nc}\n "
     exit 0
 fi
-apt update -y && apt upgrade -y
 iptables=`iptables -nvL | grep -e 8080 -e icmp`
 if [[ -z $iptables ]]; then
     iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
