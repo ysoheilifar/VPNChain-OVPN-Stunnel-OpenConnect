@@ -13,8 +13,7 @@ fi
 read -p "Enter Server-1 IP address: " server_1
 read -p "Enter Server-1 root username: " server_1_user
 read -s -p "Enter Server-1 root password: " server_1_pass
-apt install -y sshpass
-sshpass -p $server_1_pass scp -o StrictHostKeyChecking=no $server_1_user@$server_1:irfree.ovpn /root/irfree.ovpn
+scp -o StrictHostKeyChecking=no $server_1_user@$server_1:irfree.ovpn /root/irfree.ovpn
 if [[ $? == 0 ]]; then
     echo -e "\n${green} OpenVPN file Successfully download ${nc}\n"
 else
