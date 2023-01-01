@@ -44,8 +44,8 @@ connect = $server_1:8080
 EOF
 stunnel
 apt install -y openvpn 
-gw = `ip route | grep default | cut -d" " -f3`
-ether = `ip route | grep default | cut -d" " -f5`
+gw=`ip route | grep default | cut -d" " -f3`
+ether=`ip route | grep default | cut -d" " -f5`
 ip route add $server_1 via $gw dev $ether
 if [[ ! -f /root/irfree.ovpn ]]; then
     echo -e "\n${red} irfree.ovpn does not exist on /root directory \n${nc}"
