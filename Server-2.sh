@@ -12,9 +12,15 @@ else
 fi
 read -p "Enter Server-1 IP address: " server_1
 read -p "Enter Server-1 root username: " server_1_user
-read -p "Enter Server-1 root password: " server_1_pass
+read -s -p "Enter Server-1 root password: " server_1_pass
 apt install -y sshpass
 sshpass -p $server_1_pass scp $server_1_user@$server_1:irfree.ovpn /root/irfree.ovpn
+if [[ $? == 0 ]]; then
+    echo -e "\n${green} OpenVPN file Successfully download ${nc}\n"
+else
+    echo -e "\n${red} OpenVPN file failed to download ${nc}\n"
+    exit 0
+fi
 apt update -y && apt upgrade -y
 echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
 iptables=`iptables -nvL | grep -e 192.168.0.0 -e 10.8.0.2`
