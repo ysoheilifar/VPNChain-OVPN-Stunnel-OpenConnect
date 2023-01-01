@@ -11,7 +11,6 @@ else
     exit 0
 fi
 read -p "Enter Server-1 IP address: " server_1
-read -p "Enter Server-1 IP address: " server_1
 read -p "Enter Server-1 root username: " server_1_user
 read -s -p "Enter Server-1 root password: " server_1_pass
 apt install -y sshpass
