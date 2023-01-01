@@ -11,6 +11,19 @@ else
     exit 0
 fi
 read -p "Enter Server-1 IP address: " server_1
+read -p "Enter Server-1 IP address: " server_1
+read -p "Enter Server-1 root username: " server_1_user
+read -s -p "Enter Server-1 root password: " server_1_pass
+apt install -y sshpass
+sshpass -p "$server_1_pass" scp -o StrictHostKeyChecking=no $server_1_user@$server_1:irfree.ovpn /root/irfree.ovpn
+echo -e "\n${yellow} wait for 20 second ... ${nc}\n"
+sleep 20
+if [[ $? == 0 ]]; then
+    echo -e "\n${green} OpenVPN file Successfully download ${nc}\n"
+else
+    echo -e "\n${red} OpenVPN file failed to download ${nc}\n"
+    exit 0
+fi
 echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
 iptables=`iptables -t nat -L | grep -e 192.168.0.0 -e 10.8.0.2`
 if [[ -z $iptables ]]; then
