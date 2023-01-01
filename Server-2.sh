@@ -21,7 +21,6 @@ else
     echo -e "\n${red} OpenVPN file failed to download ${nc}\n"
     exit 0
 fi
-apt update -y && apt upgrade -y
 echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
 iptables=`iptables -t nat -L | grep -e 192.168.0.0 -e 10.8.0.2`
 if [[ -z $iptables ]]; then
