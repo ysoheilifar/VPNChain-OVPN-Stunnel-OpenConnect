@@ -57,7 +57,7 @@ ip route add default via 10.8.0.2 dev tun0 table 120
 ip rule add from 192.168.1.0/21 table 120
 apt install -y ocserv
 sed -i '/#auth = "pam"/a auth = "plain[passwd=/etc/ocserv/ocpasswd]"' /etc/ocserv/ocserv.conf
-sed -i 's/auth = "pam[gid-min=1000]"/#auth = "pam[gid-min=1000]"/' /etc/ocserv/ocserv.conf
+sed -ie '/auth = "pam.*/s/^/#/' /etc/ocserv/ocserv.conf
 sed -ie '/^route = /,+2 s/^/#/' /etc/ocserv/ocserv.conf
 sed -i 's/#route = default/route = default/' /etc/ocserv/ocserv.conf
 systemctl restart ocserv
