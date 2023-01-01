@@ -55,7 +55,10 @@ openvpn --config /root/irfree.ovpn --daemon
 echo -e "\n${yellow} wait 30 second ... ${nc}\n"
 sleep 30
 ip route add default via 10.8.0.2 dev tun0 table 120
-ip rule add from 192.168.1.0/21 table 120
+iprule=`ip rule show table 120 | grep 192.168.1.0/21`
+if [[ -z $iprule ]]; then
+    ip rule add from 192.168.1.0/21 table 120
+fi
 apt install -y ocserv
 sed -i '/#auth = "pam"/a auth = "plain[passwd=/etc/ocserv/ocpasswd]"' /etc/ocserv/ocserv.conf
 sed -ie '/auth = "pam.*/s/^/#/' /etc/ocserv/ocserv.conf
