@@ -65,24 +65,3 @@ sed -ie '/auth = "pam.*/s/^/#/' /etc/ocserv/ocserv.conf
 sed -ie '/^route = /,+2 s/^/#/' /etc/ocserv/ocserv.conf
 sed -i 's/#route = default/route = default/' /etc/ocserv/ocserv.conf
 systemctl restart ocserv
-if [[ ! -f /etc/systemd/system/vpnchainroute.service ]]; then
-    cp -rf ./vpnchainroute.sh /root/vpnchainroute.sh
-    chmod +x /root/vpnchainroute.sh
-    cat >> /etc/systemd/system/vpnchainroute.service << EOF
-    [Unit]
-    Description=VPNChain Route Presistante
-    After=network.target
-    StartLimitIntervalSec=0
-    [Service]
-    Type=simple
-    Restart=always
-    RestartSec=1
-    User=root
-    ExecStart=/bin/bash /root/vpnchainroute.sh
-
-    [Install]
-    WantedBy=multi-user.target
-    EOF  
-fi
-systemctl start vpnchainroute.service
-systemctl enable vpnchainroute.service
