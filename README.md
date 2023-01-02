@@ -44,3 +44,4 @@ for create and management user on Openconnect use command below
 ocpasswd -c /etc/ocserv/ocpasswd -g default <username>
 vi /etc/ocserv/ocpasswd 
 ```
+when reboot Server-2 only run `vpnchainroute.sh` file
