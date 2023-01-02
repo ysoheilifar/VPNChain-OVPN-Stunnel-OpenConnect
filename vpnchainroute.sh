@@ -17,9 +17,12 @@ if [[ -z $iptables ]]; then
     iptables -t nat -A POSTROUTING -s 192.168.0.0/21 -j SNAT --to-source 10.8.0.2
 fi
 stunnel
-openvpn --config /root/irfree.ovpn --daemon
-echo -e "\n${yellow} wait 30 sec ... ${nc}\n"
-sleep 30
+openvpn=`grep "Service [openvpn] connected" | tail  -1 /var/log/stunnel4/stunnel.log`
+if [[ -z openvpn ]]
+    openvpn --config /root/irfree.ovpn --daemon
+    echo -e "\n${yellow} wait 30 sec ... ${nc}\n"
+    sleep 30
+fi
 tun=`ifconfig | grep tun`
 if [[ -z $tun ]]; then
     echo -e "\n${red} tunnel not created check openvpn . ${nc}\n"
