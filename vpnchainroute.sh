@@ -20,6 +20,11 @@ stunnel
 openvpn --config /root/irfree.ovpn --daemon
 echo -e "\n${yellow} wait 30 sec ... ${nc}\n"
 sleep 30
+tun=`ifconfig | grep tun`
+if [[ -z $tun ]]; then
+    echo -e "\n${red} tunnel not created check openvpn . ${nc}\n"
+    exit 0
+fi
 iprule=`ip rule show table 120`
 if [[ -z $iprule  ]]; then
         ip route add default via 10.8.0.2 dev tun0 table 120
