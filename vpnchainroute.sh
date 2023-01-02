@@ -16,8 +16,7 @@ if [[ -z $tun ]]; then
     openvpn --config /root/irfree.ovpn --daemon
     echo -e "\n${yellow} wait 30 sec ... ${nc}\n"
     sleep 30
-fi
-if [[ -z $tun ]]; then
+elif [[ -z $tun ]]; then
     echo -e "\n${red} tunnel not created check openvpn . ${nc}\n"
     exit 0
 fi
