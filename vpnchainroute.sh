@@ -6,7 +6,7 @@ nc='\033[0m' #No Color
 read -p "Enter Server-1 IP address: " server_1
 gw=`ip route | grep default | cut -d" " -f3`
 ether=`ip route | grep default | cut -d" " -f5`
-iproute=`ip route | grep 95.217.159.120`
+iproute=`ip route | grep $server_1`
 if [[ -z $iproute ]]; then
     ip route add $server_1 via $gw dev $ether
 fi
@@ -17,13 +17,12 @@ if [[ -z $iptables ]]; then
     iptables -t nat -A POSTROUTING -s 192.168.0.0/21 -j SNAT --to-source 10.8.0.2
 fi
 stunnel
-openvpn=`grep "Service [openvpn] connected" | tail  -1 /var/log/stunnel4/stunnel.log`
-if [[ -z openvpn ]]
+tun=`ifconfig | grep tun`
+if [[ -z tun ]]; then
     openvpn --config /root/irfree.ovpn --daemon
     echo -e "\n${yellow} wait 30 sec ... ${nc}\n"
     sleep 30
 fi
-tun=`ifconfig | grep tun`
 if [[ -z $tun ]]; then
     echo -e "\n${red} tunnel not created check openvpn . ${nc}\n"
     exit 0
