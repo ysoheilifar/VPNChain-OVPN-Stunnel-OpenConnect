@@ -6,7 +6,10 @@ nc='\033[0m' #No Color
 read -p "Enter Server-1 IP address: " server_1
 gw=`ip route | grep default | cut -d" " -f3`
 ether=`ip route | grep default | cut -d" " -f5`
-ip route add $server_1 via $gw dev $ether
+iproute=`ip route | grep 95.217.159.120`
+if [[ -z $iproute ]]; then
+    ip route add $server_1 via $gw dev $ether
+fi
 iptables=`iptables -t nat -L | grep -e 192.168.0.0 -e 10.8.0.2`
 if [[ -z $iptables ]]; then
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
