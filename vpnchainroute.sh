@@ -10,15 +10,9 @@ iproute=`ip route | grep $server_1`
 if [[ -z $iproute ]]; then
     ip route add $server_1 via $gw dev $ether
 fi
-iptables=`iptables -t nat -L | grep -e 192.168.0.0 -e 10.8.0.2`
-if [[ -z $iptables ]]; then
-    iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-    iptables -t nat -A POSTROUTING -s 192.168.0.0/21 -j SNAT --to-source 10.8.0.2
-    iptables -t nat -A POSTROUTING -s 192.168.0.0/21 -j SNAT --to-source 10.8.0.2
-fi
 stunnel
 tun=`ifconfig | grep tun`
-if [[ -z tun ]]; then
+if [[ -z $tun ]]; then
     openvpn --config /root/irfree.ovpn --daemon
     echo -e "\n${yellow} wait 30 sec ... ${nc}\n"
     sleep 30
