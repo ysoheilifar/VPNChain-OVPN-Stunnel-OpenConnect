@@ -26,7 +26,6 @@ iptables=`iptables -t nat -L | grep -e 192.168.0.0 -e 10.8.0.2`
 if [[ -z $iptables ]]; then
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
     iptables -t nat -A POSTROUTING -s 192.168.0.0/21 -j SNAT --to-source 10.8.0.2
-    iptables -t nat -A POSTROUTING -s 192.168.0.0/21 -j SNAT --to-source 10.8.0.2
 fi
 echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
 echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
